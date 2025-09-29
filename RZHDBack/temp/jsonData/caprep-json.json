@@ -1,0 +1,59 @@
+{
+  "details": [
+    {
+      "title": "Турбокомпрессор ТК30Н26СБ2",
+      "desc": "Описание этой детали",
+      "photos": [
+        "/CapFixTK30H26Cb2/Was/photo_1_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Was/photo_2_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Was/photo_3_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Was/photo_4_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_1_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_2_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_3_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_4_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_5_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_6_2025-08-15_08-14-45.jpg"
+      ],
+      "prev_photo": "/CapFixTK30H26Cb2/Became/photo_3_2025-08-15_08-14-45.jpg"
+    },
+    {
+      "title": "Турбокомпрессор ТК30С02",
+      "desc": "Капитальный ремонт без запчастей 55 000 руб.",
+      "photos": [
+        "/CapFixTK30C02/Was/photo_1_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_2_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_3_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_4_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_5_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_6_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_7_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_8_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Became/photo_1_2025-08-15_08-18-19.jpg",
+        "/CapFixTK30C02/Became/photo_2_2025-08-15_08-18-19.jpg",
+        "/CapFixTK30C02/Became/photo_3_2025-08-15_08-18-19.jpg"
+      ],
+      "prev_photo": "/CapFixTK30C02/Became/photo_1_2025-08-15_08-18-19.jpg"
+    },
+    {
+      "title": "Топливный насос Д50",
+      "desc": "Цена капитального ремонта: 120 000 руб.",
+      "photos": [
+        "/CapFixPumpD50/Was/photo_1_2025-09-07_11-29-59.jpg",
+        "/CapFixPumpD50/Was/photo_2_2025-09-07_11-29-59.jpg",
+        "/CapFixPumpD50/Was/photo_3_2025-09-07_11-29-59.jpg",
+        "/CapFixPumpD50/Became/photo_1_2025-09-07_11-36-42.jpg",
+        "/CapFixPumpD50/Became/photo_2_2025-09-07_11-27-05.jpg",
+        "/CapFixPumpD50/Became/photo_2_2025-09-07_11-29-04.jpg",
+        "/CapFixPumpD50/Became/photo_2_2025-09-07_11-36-42.jpg",
+        "/CapFixPumpD50/Became/photo_3_2025-09-07_11-27-05.jpg",
+        "/CapFixPumpD50/Became/photo_3_2025-09-07_11-29-04.jpg",
+        "/CapFixPumpD50/Became/photo_4_2025-09-07_11-27-05.jpg",
+        "/CapFixPumpD50/Became/photo_4_2025-09-07_11-29-04.jpg",
+        "/CapFixPumpD50/Became/photo_5_2025-09-07_11-27-05.jpg",
+        "/CapFixPumpD50/Became/photo_6_2025-09-07_11-27-05.jpg"
+      ],
+      "prev_photo": "/CapFixPumpD50/Became/photo_1_2025-09-07_11-27-05.jpg"
+    }
+  ]
+}

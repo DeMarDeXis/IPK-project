@@ -1,0 +1,7 @@
+.idea
+.git
+*.md
+node_modules
+dist
+docs
+Taskfile.yaml

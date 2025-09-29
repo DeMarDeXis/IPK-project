@@ -1,0 +1,26 @@
+.idea
+.env
+.dev.env
+.local.env
+.log
+Taskfile.yml
+docs/note.txt
+
+RZHDBack/config/local.yaml
+RZHDBack/config/dev.yaml
+RZHDBack/docs/note.txt
+RZHDBack/Dockerfile.dev
+RZHDBack/docker-compose.yaml
+RZHDBack/temp/unusedJSON
+RZHDBack/Taskfile.yaml
+
+RZHDFront/node_modules
+RZHDFront/dist
+RZHDFront/*.local
+RZHDFront/docker-compose.yaml
+RZHDFront/README.md
+RZHDFront/Taskfile.yaml
+RZHDFront/Dockerfile.local
+
+# TEMP BLOCK
+RZHDBack/docs/README.md

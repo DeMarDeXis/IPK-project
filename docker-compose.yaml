@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  postgres_db_prod:
+    image: postgres:15-bullseye
+    container_name: db_postgres_prod
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-prod-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kotov_admin -d ip_kotov_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - monsieur-kotov-system
+
+  migrator_prod:
+    image: migrate/migrate
+    depends_on:
+      postgres_db_prod:
+        condition: service_healthy
+    volumes:
+      - ./RZHDBack/storage/migrations:/migrations
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      SSL_MODE: disable
+    command:
+      - -path=/migrations
+      - -database=postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=${SSL_MODE}
+      - up
+    networks:
+      - monsieur-kotov-system
+
+  backend_prod:
+    build:
+      context: ./RZHDBack
+      dockerfile: Dockerfile
+    container_name: backend_prod
+    depends_on:
+      postgres_db_prod:
+        condition: service_healthy
+      migrator_prod:
+        condition: service_completed_successfully
+    environment:
+      APP_ENV: prod
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8080:8080"
+    networks:
+      - monsieur-kotov-system
+    volumes:
+      - ./RZHDBack/config:/app/config
+      - ./RZHDBack/temp:/app/temp
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  frontend_prod:
+    build:
+      context: ./RZHDFront
+      dockerfile: Dockerfile
+    depends_on:
+      backend_prod:
+        condition: service_started
+    container_name: ip_kotov_frontend_site
+    ports:
+      - "80:80"
+    networks:
+      - monsieur-kotov-system
+
+
+volumes:
+  postgres-prod-db-data:
+
+networks:
+  monsieur-kotov-system:
+    driver: bridge

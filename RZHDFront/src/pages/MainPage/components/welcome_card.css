@@ -1,0 +1,125 @@
+.welcome-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.welcome-card {
+    max-width: 600px;
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 16px;
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(30, 58, 138, 0.1);
+}
+
+.welcome-card.hovered {
+    border-color: var(--accent-color);
+}
+
+.welcome-card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.welcome-card.hovered .welcome-title {
+    transform: scale(1.02);
+}
+
+.welcome-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.welcome-card.hovered .welcome-description {
+    color: var(--text-primary);
+}
+
+.welcome-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--activity-color), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.welcome-card.hovered .welcome-decoration {
+    opacity: 1;
+}
+
+.decoration-line {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg,
+    transparent 0%,
+    var(--activity-color) 50%,
+    transparent 100%);
+    animation: shine 1.5s infinite;
+}
+
+/*----- for click -----*/
+.click-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: var(--activity-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-weight: 600;
+}
+
+.welcome-card.hovered .click-hint {
+    opacity: 0.8;
+}
+
+.welcome-card-container {
+    /* остальные стили остаются без изменений */
+    transition: transform 0.3s ease;
+}
+
+.welcome-card-container:hover {
+    transform: scale(1.01);
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .welcome-card {
+        padding: 1.5rem;
+    }
+
+    .welcome-title {
+        font-size: 2rem;
+    }
+
+    .welcome-description {
+        font-size: 1rem;
+    }
+}
