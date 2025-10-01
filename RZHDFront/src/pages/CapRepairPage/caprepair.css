@@ -112,7 +112,6 @@
     }
 }
 /*------ [END]My style --------------------*/
-/* Анимация для header */
 .cap-rep-header {
     transition: transform 0.3s ease-in-out;
 }
@@ -121,7 +120,6 @@
     transform: translateY(-100%);
 }
 
-/* Стили для контента */
 .repair-title {
     font-size: 2.5rem;
     color: var(--text-primary);
@@ -199,7 +197,6 @@
     text-align: center;
 }
 
-/* Адаптация для мобильных */
 @media (max-width: 768px) {
     .repair-item {
         flex-direction: column !important;

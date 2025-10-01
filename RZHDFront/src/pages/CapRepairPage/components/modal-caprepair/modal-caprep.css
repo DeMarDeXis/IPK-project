@@ -58,7 +58,6 @@
     text-align: center;
 }
 
-/* Стили для слайдера */
 .caprepair-slider-container {
     position: relative;
     margin: 2rem 0;
@@ -68,18 +67,17 @@
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    max-height: 60vh; /* Ограничиваем высоту слайдера */
+    max-height: 60vh;
 }
 
 .caprepair-slider img {
     width: 100%;
     height: auto;
-    max-height: 60vh; /* Ограничиваем максимальную высоту */
-    object-fit: contain; /* Сохраняем пропорции */
+    max-height: 60vh;
+    object-fit: contain;
     border-radius: 12px;
 }
 
-/* Обновим также кнопки для лучшего позиционирования */
 .caprepair-slider-btn {
     position: absolute;
     top: 50%;
@@ -96,7 +94,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 5; /* Добавляем z-index чтобы кнопки были поверх изображения */
+    z-index: 5;
 }
 
 .caprepair-slider-btn:hover {

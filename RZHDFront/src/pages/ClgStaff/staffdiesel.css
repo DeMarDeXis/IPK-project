@@ -255,7 +255,6 @@
     font-style: italic;
 }
 
-/* Пагинация */
 .pagination-controls {
     display: flex;
     justify-content: center;
@@ -289,7 +288,6 @@
 }
 /*----- [END]Main content styles -----------------------------*/
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .bgmain-container {
         flex-direction: column;
@@ -308,7 +306,6 @@
 }
 
 /*------------------------UPD--------------------------------*/
-/* Стили для цены в списке */
 .part-price {
     display: block;
     font-size: 0.8rem;
@@ -320,7 +317,6 @@
     color: #e0e0e0;
 }
 
-/* Стили для цены в детальном просмотре */
 .selected-part-price {
     font-size: 1.2rem;
     font-weight: bold;
@@ -328,7 +324,6 @@
     margin: 15px 0;
 }
 
-/* Стили для состояния загрузки */
 .loading-container {
     display: flex;
     justify-content: center;
@@ -337,7 +332,6 @@
     font-size: 1.2rem;
 }
 
-/* Стили для ошибки */
 .error-container {
     display: flex;
     justify-content: center;

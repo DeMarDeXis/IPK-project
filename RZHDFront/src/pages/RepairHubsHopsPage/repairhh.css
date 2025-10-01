@@ -171,7 +171,6 @@
     font-size: 0.9rem;
 }
 
-/* адаптив */
 @media (max-width: 768px) {
     .repairhh-item {
         flex-direction: column;

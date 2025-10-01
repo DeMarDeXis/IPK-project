@@ -9,7 +9,6 @@ import wupLogo from "../../assets/socialMediaLogos/whatsapp.svg"
 const MainPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // TODO: remake it
     const aboutData = {
         title: "О нас",
         text:   "Более 50 партнеров и довольных клиентов.\n" +
@@ -45,7 +44,6 @@ const MainPage: React.FC = () => {
                     <h1>ИП Котов О.В.</h1>
                     <div className="navbar">
                         <ul>
-                            {/*TODO: To learn types of button*/}
                             <li><h4>kotovoleg1979@yandex.ru</h4></li>
                             <li><h4>+7(927)365-60-21</h4></li>
                         </ul>

@@ -2,9 +2,6 @@ import React, {useEffect, useState} from "react";
 import "./caprepair.css";
 import CapRepairModal from "./components/modal-caprepair/ModalCaprep.tsx"
 import {useNavigate} from "react-router-dom";
-// import ImageSlider from "./components/ImgSlide.tsx"
-// import fstPhoto from "../../../public/CapFixTK30C02/Was/photo_1_2025-08-15_08-18-54.jpg"
-// import scndPhoto from "../../../public/CapFixTK30C02/Became/photo_1_2025-08-15_08-18-19.jpg"
 
 interface Details {
     id: string
@@ -25,7 +22,6 @@ const CapRepairPage: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
-    // TODO: fetch from API srv
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -169,7 +165,7 @@ const CapRepairPage: React.FC = () => {
                                             onClick={() => handleItemClick(item)}
                                             style={{ cursor: 'pointer' }}
                                         >
-                                            Фото {item.title}
+                                            Фотография отсутствует
                                         </div>
                                     )}
                                 </div>
@@ -187,7 +183,7 @@ const CapRepairPage: React.FC = () => {
                     onClose={handleModalClose}
                     title={selectedItem.title}
                     description={selectedItem.desc}
-                    slides={selectedItem.photos.map((photo, index) => ({
+                    slides={(selectedItem.photos ?? []).map((photo, index) => ({
                         src: photo,
                         alt: `${selectedItem.title} - фото ${index + 1}`
                     }))}

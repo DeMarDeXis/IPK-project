@@ -17,7 +17,6 @@ const RepairHHPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [selectedItem, setSelectedItem] = useState<Aggregators | null>(null);
 
-    // TODO: fetch from API srv
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -26,7 +25,6 @@ const RepairHHPage: React.FC = () => {
 
                 const data = await response.json();
                 const list = data.aggregators ?? data.aggregatorsList ?? [];
-                console.log(list);
                 setAggregators(list);
             } catch (error) {
                 console.error('Error loading aggregators:', error);

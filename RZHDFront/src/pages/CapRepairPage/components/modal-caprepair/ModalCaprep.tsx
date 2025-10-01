@@ -50,7 +50,7 @@ const CapRepairModal: React.FC<CapRepairModalProps> = ({
                     <p>{description}</p>
                 </div>
 
-                {slides.length > 0 && (
+                {slides.length > 0 ? (
                     <div className={"caprepair-slider-container"}>
                         <div className={"caprepair-slider"}>
                             <img src={slides[currentSlide].src} alt={slides[currentSlide].alt || title}/>
@@ -99,6 +99,8 @@ const CapRepairModal: React.FC<CapRepairModalProps> = ({
                             </div>
                         )}
                     </div>
+                ) : (
+                    <p style={{ textAlign: 'center', color: "black" }}> Нет фотографии </p>
                 )}
             </div>
         </div>
