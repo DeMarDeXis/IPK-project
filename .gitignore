@@ -17,6 +17,8 @@ RZHDBack/Taskfile.yaml
 RZHDFront/node_modules
 RZHDFront/dist
 RZHDFront/*.local
+RZHDFront/public/CapFixPumpD50/idk
+RZHDFront/public/CapFixPumpD50/idk2
 RZHDFront/docker-compose.yaml
 RZHDFront/README.md
 RZHDFront/Taskfile.yaml

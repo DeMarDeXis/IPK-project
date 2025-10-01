@@ -3,5 +3,7 @@
 *.md
 node_modules
 dist
+public/CapFixPumpD50/idk
+public/CapFixPumpD50/idk2
 docs
 Taskfile.yaml

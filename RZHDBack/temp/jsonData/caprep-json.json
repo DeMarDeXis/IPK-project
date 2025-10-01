@@ -2,7 +2,7 @@
   "details": [
     {
       "title": "Турбокомпрессор ТК30Н26СБ2",
-      "desc": "Описание этой детали",
+      "desc": "",
       "photos": [
         "/CapFixTK30H26Cb2/Was/photo_1_2025-08-15_08-15-57.jpg",
         "/CapFixTK30H26Cb2/Was/photo_2_2025-08-15_08-15-57.jpg",
@@ -36,24 +36,35 @@
       "prev_photo": "/CapFixTK30C02/Became/photo_1_2025-08-15_08-18-19.jpg"
     },
     {
-      "title": "Топливный насос Д50",
-      "desc": "Цена капитального ремонта: 120 000 руб.",
-      "photos": [
-        "/CapFixPumpD50/Was/photo_1_2025-09-07_11-29-59.jpg",
-        "/CapFixPumpD50/Was/photo_2_2025-09-07_11-29-59.jpg",
-        "/CapFixPumpD50/Was/photo_3_2025-09-07_11-29-59.jpg",
-        "/CapFixPumpD50/Became/photo_1_2025-09-07_11-36-42.jpg",
-        "/CapFixPumpD50/Became/photo_2_2025-09-07_11-27-05.jpg",
-        "/CapFixPumpD50/Became/photo_2_2025-09-07_11-29-04.jpg",
-        "/CapFixPumpD50/Became/photo_2_2025-09-07_11-36-42.jpg",
-        "/CapFixPumpD50/Became/photo_3_2025-09-07_11-27-05.jpg",
-        "/CapFixPumpD50/Became/photo_3_2025-09-07_11-29-04.jpg",
-        "/CapFixPumpD50/Became/photo_4_2025-09-07_11-27-05.jpg",
-        "/CapFixPumpD50/Became/photo_4_2025-09-07_11-29-04.jpg",
-        "/CapFixPumpD50/Became/photo_5_2025-09-07_11-27-05.jpg",
-        "/CapFixPumpD50/Became/photo_6_2025-09-07_11-27-05.jpg"
-      ],
-      "prev_photo": "/CapFixPumpD50/Became/photo_1_2025-09-07_11-27-05.jpg"
+      "title": "Турбокомпрессор ТК18н-02",
+      "desc": "",
+      "photos": [],
+      "prev_photo": ""
+    },
+    {
+      "title": "Турбокомпрессор ТК18с-21",
+      "desc": "",
+      "photos": [],
+      "prev_photo": ""
+    },
+    {
+      "title": "Турбокомпрессор ТК23с-01",
+      "desc": "",
+      "photos": [],
+      "prev_photo": ""
+    },
+    {
+      "title": "Турбокомпрессор ТК23с-44",
+      "desc": "",
+      "photos": [],
+      "prev_photo": ""
+    },
+    {
+      "title": "Турбокомпрессор ТК34н-04",
+      "desc": "",
+      "photos": [],
+      "prev_photo": ""
     }
+
   ]
 }

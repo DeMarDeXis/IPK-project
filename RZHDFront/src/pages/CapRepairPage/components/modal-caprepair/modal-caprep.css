@@ -68,20 +68,22 @@
     position: relative;
     border-radius: 12px;
     overflow: hidden;
+    max-height: 60vh; /* Ограничиваем высоту слайдера */
 }
 
 .caprepair-slider img {
     width: 100%;
-    height: 800px;
-    object-fit: contain;
+    height: auto;
+    max-height: 60vh; /* Ограничиваем максимальную высоту */
+    object-fit: contain; /* Сохраняем пропорции */
     border-radius: 12px;
 }
 
+/* Обновим также кнопки для лучшего позиционирования */
 .caprepair-slider-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    /*background: rgba(255, 255, 255, 0.9);*/
     background: var(--activity-color);
     border: none;
     border-radius: 50%;
@@ -94,6 +96,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 5; /* Добавляем z-index чтобы кнопки были поверх изображения */
 }
 
 .caprepair-slider-btn:hover {
@@ -142,7 +145,6 @@
     }
 }
 
-/* Адаптация для мобильных */
 @media (max-width: 768px) {
     .caprepair-modal-content {
         padding: 1.5rem;
@@ -153,8 +155,12 @@
         font-size: 1.6rem;
     }
 
+    .caprepair-slider {
+        max-height: 50vh;
+    }
+
     .caprepair-slider img {
-        height: 300px;
+        max-height: 50vh;
     }
 
     .caprepair-slider-btn {
@@ -165,8 +171,12 @@
 }
 
 @media (max-width: 480px) {
+    .caprepair-slider {
+        max-height: 40vh;
+    }
+
     .caprepair-slider img {
-        height: 250px;
+        max-height: 40vh;
     }
 
     .caprepair-slider-btn {

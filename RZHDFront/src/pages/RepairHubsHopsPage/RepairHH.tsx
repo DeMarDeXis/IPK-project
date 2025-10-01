@@ -26,6 +26,7 @@ const RepairHHPage: React.FC = () => {
 
                 const data = await response.json();
                 const list = data.aggregators ?? data.aggregatorsList ?? [];
+                console.log(list);
                 setAggregators(list);
             } catch (error) {
                 console.error('Error loading aggregators:', error);
