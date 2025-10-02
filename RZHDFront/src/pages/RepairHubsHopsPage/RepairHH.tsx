@@ -62,8 +62,8 @@ const RepairHHPage: React.FC = () => {
                     </h1>
                     <div className="navbar">
                         <ul>
-                            <li><h4>kotovoleg1979@yandex.ru</h4></li>
-                            <li><h4>+7(927)365-60-21</h4></li>
+                            <li><h4 style={{color: "white"}}>kotovoleg1979@yandex.ru</h4></li>
+                            <li><h4 style={{color: "white"}}>+7(927)365-60-21</h4></li>
                         </ul>
                     </div>
                 </div>

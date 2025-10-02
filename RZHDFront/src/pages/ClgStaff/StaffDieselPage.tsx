@@ -148,8 +148,8 @@ const CtlgStaffDieselPage: React.FC = () => {
                     </h1>
                     <div className="navbar">
                         <ul>
-                            <li><h4>kotovoleg1979@yandex.ru</h4></li>
-                            <li><h4>+7(927)365-60-21</h4></li>
+                            <li><h4 style={{color: "white"}}>kotovoleg1979@yandex.ru</h4></li>
+                            <li><h4 style={{color: "white"}}>+7(927)365-60-21</h4></li>
                         </ul>
                     </div>
                 </div>
@@ -159,13 +159,13 @@ const CtlgStaffDieselPage: React.FC = () => {
                 <div className={"list-container"}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
                         <h2 className="catalog-title">
-                            {mode === "catalogue" ? "Каталог запчастей Д50" : "Частное производство"}
+                            {mode === "catalogue" ? "Каталог запчастей Д50" : "Собственное производство"}
                         </h2>
                         <button
                             className="pagination-button"
                             onClick={() => setMode(mode === "catalogue" ? "private" : "catalogue")}
                         >
-                            {mode === "catalogue" ? "Частное производство" : "Каталог Д50"}
+                            {mode === "catalogue" ? "Собственное производство" : "Каталог запчастей Д50"}
                         </button>
                     </div>
 
