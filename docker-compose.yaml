@@ -78,6 +78,10 @@ services:
     container_name: ip_kotov_frontend_site
     ports:
       - "80:80"
+      - "433:433"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - monsieur-kotov-system
 
