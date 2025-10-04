@@ -38,26 +38,45 @@
     {
       "title": "Турбокомпрессор ТК18н-02",
       "desc": "",
-      "photos": [],
-      "prev_photo": ""
+      "photos": [
+        "Production/TK18H02/TK18H02Photo1.jpg",
+        "Production/TK18H02/TK18H02Photo2.jpg",
+        "Production/TK18H02/TK18H02Photo3.jpg"
+
+      ],
+      "prev_photo": "Production/TK18H02/TK18H02Photo3.jpg"
     },
     {
       "title": "Турбокомпрессор ТК18с-21",
       "desc": "",
-      "photos": [],
-      "prev_photo": ""
+      "photos": [
+        "Production/TK18C21/TK18C21Photo1.jpg",
+        "Production/TK18C21/TK18C21Photo2.jpg",
+        "Production/TK18C21/TK18C21Photo3.jpg"
+      ],
+      "prev_photo": "Production/TK18C21/TK18C21Photo1.jpg"
     },
     {
       "title": "Турбокомпрессор ТК23с-01",
       "desc": "",
-      "photos": [],
-      "prev_photo": ""
+      "photos": [
+        "Production/TK23C01/Before/TK23C01Photo1.jpg",
+        "Production/TK23C01/Before/TK23C01Photo2.jpg",
+        "Production/TK23C01/Before/TK23C01Photo3.jpg",
+        "Production/TK23C01/Before/TK23C01Photo4.jpg",
+        "Production/TK23C01/TK23C01Photo1.jpg",
+        "Production/TK23C01/TK23C01Photo2.jpg"
+      ],
+      "prev_photo": "Production/TK23C01/TK23C01Photo1.jpg"
     },
     {
       "title": "Турбокомпрессор ТК23с-44",
       "desc": "",
-      "photos": [],
-      "prev_photo": ""
+      "photos": [
+        "Production/TK23C44/TK23C44Ph1.jpg",
+        "Production/TK23C44/TK23C44Ph2.jpg"
+      ],
+      "prev_photo": "Production/TK23C44/TK23C44Ph1.jpg"
     },
     {
       "title": "Турбокомпрессор ТК34н-04",

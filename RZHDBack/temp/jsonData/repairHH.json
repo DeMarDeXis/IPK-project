@@ -39,8 +39,12 @@
     {
       "title": "Ремонт роторов",
       "desc": "Цена: 12 000 руб.",
-      "photos": [],
-      "prev_photo": ""
+      "photos": [
+        "Production/Rotors/RotorsPh1.jpg",
+        "Production/Rotors/RotorsPh2.jpg",
+        "Production/Rotors/RotorsPh3.jpg"
+      ],
+      "prev_photo": "Production/Rotors/RotorsPh3.jpg"
     },
     {
       "title": "Балансировка роторов",

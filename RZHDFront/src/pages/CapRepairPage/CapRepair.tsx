@@ -106,6 +106,7 @@ const CapRepairPage: React.FC = () => {
                         <ul>
                             <li><h4 style={{color: "white"}}>kotovoleg1979@yandex.ru</h4></li>
                             <li><h4 style={{color: "white"}}>+7(927)365-60-21</h4></li>
+                            <li><h4 style={{color: "white"}}>+7(927)287-10-48</h4></li>
                         </ul>
                     </div>
                 </div>
