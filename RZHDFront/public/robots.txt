@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin
+Allow: /
+
+
+Sitemap: https://tkremont58.ru/sitemap.xml
+
+Host: tkremont58.ru
