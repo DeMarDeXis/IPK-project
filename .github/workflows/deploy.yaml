@@ -37,36 +37,31 @@ jobs:
             echo "⚠️ ssh-keyscan failed, but continuing (first connection will ask for fingerprint)"
           }
 
-      - name: Setup Docker & Compose on server
+      - name: Ensure Docker & Compose V2 on server
         env:
           HOST: ${{ secrets.SERVER_HOST }}
         run: |
-          ssh -o StrictHostKeyChecking=no $HOST '
+          ssh -o StrictHostKeyChecking=no "$HOST" '
             set -e
-            echo  "[INFO]: Setting up Docker & Compose"
-          
-            if command -v docker &> /dev/null && docker info &> /dev/null; then
-              echo "[INFO]: Docker already installed"
-            else
-              echo "[INFO]: Installing Docker"
+            echo "[✓] Checking Docker..."
+            if ! command -v docker &> /dev/null || ! docker info &> /dev/null; then
+              echo "[→] Installing Docker..."
               curl -fsSL https://get.docker.com | sh
-              systemctl enable docker
-              systemctl start docker
+              systemctl enable --now docker
             fi
           
-            echo "[INFO]: Setting up Compose V2 Plugin"
-            if docker compose version &> /dev/null; then
-              echo "[INFO]: Compose V2 Plugin already installed"
-            else
-              echo "[INFO]: Installing Compose V2 Plugin"
+            echo "[✓] Ensuring Compose V2 plugin..."
+            # Проверяем, что плагин установлен и работает
+            if ! docker compose version &> /dev/null; then
+              echo "[→] Installing docker-compose-plugin..."
               apt-get update -y
-              apt-get install -y docker-compose
+              apt-get install -y docker-compose-plugin
             fi
-
-            echo  "[INFO]: Setting up Docker Network"
+          
+            echo "[✓] Creating network..."
             docker network create monsieur-kotov-system || true
           
-            echo "[INFO]: Docker is READY. Go next..."
+            echo "[✓] Docker + Compose V2 ready!"
           '
 
       - name: Generate .env file on server
