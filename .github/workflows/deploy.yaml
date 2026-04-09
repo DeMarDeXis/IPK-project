@@ -78,15 +78,15 @@ jobs:
         run: |
           ssh $HOST "mkdir -p $DEPLOY_DIR"
           ssh $HOST "cat > $DEPLOY_DIR/.env" <<EOF
-          DB_USER=kotov_admin
-          DB_PASSWORD=$DB_PASSWORD
-          DB_NAME=ip_kotov_db
-          DB_HOST=db_postgres_prod
-          DB_PORT=5432
-          SSL_MODE=$SSL_MODE
-          APP_ENV=prod
-          VITE_API_URL=/api
-          EOF
+DB_USER=kotov_admin
+DB_PASSWORD=$DB_PASSWORD
+DB_NAME=ip_kotov_db
+DB_HOST=db_postgres_prod
+DB_PORT=5432
+SSL_MODE=$SSL_MODE
+APP_ENV=prod
+VITE_API_URL=/api
+EOF
           
       - name: Sync files to server
         env:
@@ -114,15 +114,15 @@ jobs:
           HOST: ${{ secrets.SERVER_HOST }}
           DEPLOY_DIR: /root/apps/ip_kotov
         run: |
-          ssh -o StrictHostKeyChecking=no $HOST "
+          ssh -o StrictHostKeyChecking=no "$HOST" bash -s <<'REMOTESSH'
             set -e
             cd $DEPLOY_DIR
           
             echo "[INFO]: Stopping & Removing old containers"
-            docker-compose --profile prod --file docker-compose.yaml --env-file .env down --volumes
+            docker compose --profile prod --file docker-compose.yaml --env-file .env down --volumes
           
             echo "[INFO]: Starting new containers"
-            docker-compose --profile prod --file docker-compose.yaml --env-file .env up --build -d --remove-orphans
+            docker compose --profile prod --file docker-compose.yaml --env-file .env up --build -d --remove-orphans
           
             echo "[INFO]: Waiting for containers to start"
             sleep 20
@@ -136,4 +136,4 @@ jobs:
             docker image prune -f || true
           
             echo 'Deployment successful!'
-          "
+          REMOTESSH
