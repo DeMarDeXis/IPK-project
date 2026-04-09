@@ -105,7 +105,6 @@ jobs:
       - name: Deploy fullstack application
         env:
           HOST: ${{ secrets.SERVER_HOST }}
-          DEPLOY_DIR: /root/apps/ip_kotov
         run: |
           ssh -o StrictHostKeyChecking=no "$HOST" bash -s <<'REMOTESSH'
             set -e
