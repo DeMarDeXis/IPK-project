@@ -29,7 +29,13 @@ jobs:
       - name: Add server to known hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+          RAW_HOST="${{ secrets.SERVER_HOST }}"
+          CLEAN_HOST=$(echo "$RAW_HOST" | sed 's/.*@//; s/:.*//')
+          
+          echo "Scanning host: $CLEAN_HOST"
+          ssh-keyscan -H "$CLEAN_HOST" >> ~/.ssh/known_hosts 2>/dev/null || {
+            echo "⚠️ ssh-keyscan failed, but continuing (first connection will ask for fingerprint)"
+          }
 
       - name: Setup Docker & Compose on server
         env:
