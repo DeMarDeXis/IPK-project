@@ -1,0 +1,136 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.card {
+    max-width: 600px;
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(30, 58, 138, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+
+    transition:
+            transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+            box-shadow 0.3s ease,
+            background 0.3s ease,
+            border-color 0.3s ease;
+    will-change: transform, box-shadow;
+}
+
+/* ===== State by hover by cursor ===== */
+.cardHovered {
+    composes: card; /* 👈 Наследуем базовые стили .card */
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, var(--default-bg-color) 0%, var(--second-bg-color) 100%);
+    border-color: var(--accent-color);
+}
+
+.cardHovered.title {
+    transform: scale(1.02);
+}
+
+.cardHovered .description {
+    color: var(--text-primary);
+}
+
+/* ===== Content ===== */
+.content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.title {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
+    /*margin: 0;*/
+    transition: color 0.3s ease;
+}
+
+.decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--activity-color), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cardHovered .decoration {
+    opacity: 1;
+}
+
+.decorationLine {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg,
+    transparent 0%,
+    var(--activity-color) 50%,
+    transparent 100%);
+    animation: shine 1.5s infinite;
+}
+
+/*----- for click -----*/
+.clickHint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: var(--activity-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-weight: 600;
+}
+
+.cardHovered .clickHint {
+    opacity: 0.8;
+}
+
+/* ===== Animation ===== */
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .container:hover,
+    .title,
+    .description,
+    .decoration,
+    .clickHint {
+        transition: none !important;
+        animation: none !important;
+    }
+    .cardHovered {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/* ===== 📱 Адаптивность ===== */
+@media (max-width: 768px) {
+    .card { padding: 1.5rem; }
+    .title { font-size: 2rem; }
+    .description { font-size: 1rem; }
+}

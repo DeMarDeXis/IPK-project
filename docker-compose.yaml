@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres_db_prod:
     image: postgres:15-bullseye
@@ -19,6 +17,9 @@ services:
       retries: 5
     networks:
       - monsieur-kotov-system
+    profiles:
+      - dev
+      - prod
 
   migrator_prod:
     image: migrate/migrate
@@ -40,6 +41,9 @@ services:
       - up
     networks:
       - monsieur-kotov-system
+    profiles:
+      - dev
+      - prod
 
   backend_prod:
     build:
@@ -67,6 +71,26 @@ services:
         limits:
           cpus: "1.0"
           memory: 512M
+    profiles:
+      - dev
+      - prod
+
+
+  frontend_dev:
+    build:
+      context: ./RZHDFront
+      dockerfile: Dockerfile.dev
+    depends_on:
+      backend_prod:
+        condition: service_started
+    container_name: ip_kotov_frontend_site_dev
+    ports:
+      - "80:80"
+    networks:
+      - monsieur-kotov-system
+    profiles:
+      - dev
+
 
   frontend_prod:
     build:
@@ -83,7 +107,8 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - monsieur-kotov-system
-
+    profiles:
+      - prod
 
 volumes:
   postgres-prod-db-data:

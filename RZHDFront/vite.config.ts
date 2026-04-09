@@ -17,12 +17,14 @@ export default defineConfig(({ mode }) => {
         usePolling: true,
         interval: 1000
       },
+      // ------------------ para dev-preprod/prod ------------------
       proxy:{
         '/api': {
-          target: env.VITE_API_URL, // para dev/prod
+          target: env.VITE_API_URL,
           changeOrigin: true,
         },
       }
+      // ------------------ para local/local-dev ------------------
       // proxy: {
       //   '/api': {
       //     target: 'http://backend_dev:8080',
@@ -30,7 +32,6 @@ export default defineConfig(({ mode }) => {
       //     rewrite: (path) => path.replace(/^\/api/, ''),
       //   },
       // }
-
     }
   }
 })

@@ -8,6 +8,7 @@ docs/note.txt
 
 RZHDBack/config/local.yaml
 RZHDBack/config/dev.yaml
+RZHDBack/docs/certificate.txt
 RZHDBack/docs/note.txt
 RZHDBack/Dockerfile.dev
 RZHDBack/docker-compose.yaml
@@ -17,12 +18,15 @@ RZHDBack/Taskfile.yaml
 RZHDFront/node_modules
 RZHDFront/dist
 RZHDFront/*.local
-RZHDFront/public/CapFixPumpD50/idk
-RZHDFront/public/CapFixPumpD50/idk2
+RZHDFront/public/Archive/idk
+RZHDFront/public/Archive/idk2
+RZHDFront/public/Archive/PrivateProd
 RZHDFront/docker-compose.yaml
 RZHDFront/README.md
 RZHDFront/Taskfile.yaml
 RZHDFront/Dockerfile.local
+RZHDFront/Dockerfile.dev
+RZHDFront/nginx.dev.conf
 
 # TEMP BLOCK
 RZHDBack/docs/README.md

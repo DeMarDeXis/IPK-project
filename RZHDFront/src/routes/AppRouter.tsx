@@ -1,22 +1,17 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute.tsx";
 import MainPage from "../pages/MainPage/MainPage.tsx";
-import CtlgStaffDieselPage from "../pages/ClgStaff/StaffDieselPage.tsx";
-import CapRepairPage from "../pages/CapRepairPage/CapRepair.tsx";
-import RepairHHPage from "../pages/RepairHubsHopsPage/RepairHH.tsx";
+import ListDieselAndPrivateProductionPage from "../pages/Catalogue/CatalogueStaffAndOwnerStaff/PrivateAndDieselProds.tsx";
+import MajorRepairPage from "../pages/Catalogue/MajorRepairListPage/MajorRepair.tsx";
+import RepairHHPage from "../pages/Catalogue/RepairHubsAssembliesPage/RepairHAPage.tsx";
 
 const AppRouter = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path={"/"} element={<MainPage />} />
-                <Route path={"/catalog"} element={<CtlgStaffDieselPage />} />
-                <Route path={"/caprep"} element={<CapRepairPage />} />
+                <Route path={"/catalog"} element={<ListDieselAndPrivateProductionPage />} />
+                <Route path={"/caprep"} element={<MajorRepairPage />} />
                 <Route path={"/repairhh"} element={<RepairHHPage />} />
-
-                <Route element={<ProtectedRoute />}>
-
-                </Route>
             </Routes>
         </BrowserRouter>
     );

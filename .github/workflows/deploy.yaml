@@ -4,118 +4,130 @@ on:
   workflow_dispatch:
     inputs:
       tags:
-        description: "Tag which should be deployed"
+        description: "Tag which should be deployed (e.g., v0.0.1)"
         required: true
+        type: string
 
 env:
   DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      HOST: ${{ secrets.SERVER_HOST }}
-      DEPLOY_DIRECTORY: /root/apps/ip_kotov
-      SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-      DB_USER: kotov_admin
-      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_NAME: ip_kotov_db
-      DB_HOST: db_postgres_prod
-      DB_PORT: "5432"
-      SSL_MODE: ${{ secrets.SSL_MODE }}
-      APP_ENV: prod
-      VITE_API_URL: /api
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.inputs.tags }}
 
-      - name: Verify tag exists
-        run: |
-          git fetch --all --tags
-          if ! git tag | grep -q "^${{ github.event.inputs.tags }}$"; then
-            echo "[ERROR]: Tag ${{ github.event.inputs.tags }} does not exist"
-            exit 1
-          fi
-
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.9.1
         with:
           ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
 
-      - name: Setup Docker on server
+      - name: Add server to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+
+      - name: Setup Docker & Compose on server
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
         run: |
           ssh -o StrictHostKeyChecking=no $HOST '
-            if ! command -v docker &> /dev/null; then
-              apt-get update
-              apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-              add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-              apt-get update
-              apt-get install -y docker-ce docker-ce-cli containerd.io
+            set -e
+            echo  "[INFO]: Setting up Docker & Compose"
+          
+            if command -v docker &> /dev/null %% docker info &> /dev/null; then
+              echo "[INFO]: Docker already installed"
+            else
+              echo "[INFO]: Installing Docker"
+              curl -fsSL https://get.docker.com | sh
               systemctl enable docker
+              systemctl start docker
+            fi
+          
+            echo "[INFO]: Setting up Compose V2 Plugin"
+            if docker compose version &> /dev/null; then
+              echo "[INFO]: Compose V2 Plugin already installed"
+            else
+              echo "[INFO]: Installing Compose V2 Plugin"
+              apt-get update -y
+              apt-get install -y docker-compose
             fi
 
-            if ! command -v docker-compose &> /dev/null; then
-              curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-              chmod +x /usr/local/bin/docker-compose
-            fi
-
+            echo  "[INFO]: Setting up Docker Network"
             docker network create monsieur-kotov-system || true
+          
+            echo "[INFO]: Docker is READY. Go next..."
           '
 
-      - name: Prepare deployment directory
+      - name: Generate .env file on server
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
+          DEPLOY_DIR: /root/apps/ip_kotov
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          SSL_MODE: ${{ secrets.SSL_MODE }}
         run: |
-          ssh -o StrictHostKeyChecking=no $HOST "mkdir -p $DEPLOY_DIRECTORY/{config,storage/migrations}"
-
-      - name: Copy all necessary files
+          ssh $HOST "mkdir -p $DEPLOY_DIR"
+          ssh $HOST "cat > $DEPLOY_DIR/.env" <<EOF
+          DB_USER=kotov_admin
+          DB_PASSWORD=$DB_PASSWORD
+          DB_NAME=ip_kotov_db
+          DB_HOST=db_postgres_prod
+          DB_PORT=5432
+          SSL_MODE=$SSL_MODE
+          APP_ENV=prod
+          VITE_API_URL=/api
+          EOF
+          
+      - name: Sync files to server
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
+          DEPLOY_DIR: /root/apps/ip_kotov
         run: |
-          mkdir -p .deploy-temp/RZHDBack
-          mkdir -p .deploy-temp/RZHDFront
-                    
-          cp -r RZHDBack/cmd .deploy-temp/RZHDBack/
-          cp -r RZHDBack/internal .deploy-temp/RZHDBack/
-          cp -r RZHDBack/pkg .deploy-temp/RZHDBack/
-          cp -r RZHDBack/config .deploy-temp/RZHDBack/
-          cp -r RZHDBack/storage .deploy-temp/RZHDBack/
-          cp -r RZHDBack/temp .deploy-temp/RZHDBack/
-          cp RZHDBack/go.mod RZHDBack/go.sum .deploy-temp/RZHDBack/
-          cp RZHDBack/Dockerfile .deploy-temp/RZHDBack/
-                    
-          cp -r RZHDFront/* .deploy-temp/RZHDFront/
-                    
-          cp docker-compose.yaml .deploy-temp/
-                    
-          {
-            echo "DB_USER=kotov_admin"
-            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"
-            echo "DB_NAME=ip_kotov_db"
-            echo "DB_HOST=db_postgres_prod"
-            echo "DB_PORT=5432"
-            echo "SSL_MODE=${{ secrets.SSL_MODE }}"
-            echo "APP_ENV=prod"
-            echo "VITE_API_URL=/api"
-          } > .deploy-temp/.env
-          
-          scp -o StrictHostKeyChecking=no -r .deploy-temp/. $HOST:$DEPLOY_DIRECTORY/
-          
-          rm -rf .deploy-temp
+          rsync -avz --delete \
+            -e "ssh" \
+            --exclude='.git' \
+            --exclude='.env' \
+            --exclude='.gitignore' \
+            --exclude='.github' \
+            --exclude='deploy.yaml' \
+            --exclude='.idea' \
+            --exclude='.vscode' \
+            --exclude='node_modules' \
+            --exclude='.env.local' \
+            --exclude='.env.example' \
+            --exclude='.env.prod' \
+            --exclude='.env.prod.local' \
+            ./ $HOST:$DEPLOY_DIR/
 
       - name: Deploy fullstack application
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
+          DEPLOY_DIR: /root/apps/ip_kotov
         run: |
           ssh -o StrictHostKeyChecking=no $HOST "
-            cd $DEPLOY_DIRECTORY
+            set -e
+            cd $DEPLOY_DIR
+          
+            echo "[INFO]: Stopping & Removing old containers"
             docker-compose --file docker-compose.yaml --env-file .env down --volumes
-            docker-compose --file docker-compose.yaml --env-file .env up --build -d
-          "
-
-      - name: Verify deployment
-        run: |
-          ssh -o StrictHostKeyChecking=no $HOST "
-            cd $DEPLOY_DIRECTORY
+          
+            echo "[INFO]: Starting new containers"
+            docker-compose --file docker-compose.yaml --env-file .env up --build -d --remove-orphans
+          
+            echo "[INFO]: Waiting for containers to start"
+            sleep 20
+          
+            echo "[INFO]: Checking containers status"
             docker ps
-            sleep 10
-            curl -I http://localhost || true
+          
+            echo "[WARN]: Not have healthchecking"
+          
+            echo 'Cleaning dangling images...'
+            docker image prune -f || true
+          
+            echo 'Deployment successful!'
           "

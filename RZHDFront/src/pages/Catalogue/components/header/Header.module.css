@@ -1,0 +1,94 @@
+.headerLine {
+    background-color: var(--second-bg-color);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: var(--activity-color);
+}
+
+.content.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.content.navbar li {
+    display: flex;
+    align-items: center;
+}
+
+.content.navbar li h4 {
+    margin: 0;
+}
+
+.clickableLogo {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.clickableLogo:hover {
+    background-color: var(--activity-color);
+    color: var(--default-bg-color);
+    transform: scale(1.05);
+}
+
+.clickableLogo:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.clickableLogo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--activity-color) 0%, transparent 100%);
+    opacity: 0;
+    transition: 0.3s ease;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+.clickableLogo:hover::before {
+    opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+    .clickableLogo {
+        font-size: 1.5rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .clickableLogo {
+        font-size: 1.3rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
