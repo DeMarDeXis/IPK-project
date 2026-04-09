@@ -72,17 +72,14 @@ jobs:
           SSL_MODE: ${{ secrets.SSL_MODE }}
         run: |
           ssh "$HOST" "mkdir -p $DEPLOY_DIR"
-          ssh "$HOST" 'bash -c "cat > $DEPLOY_DIR/.env <<EOF
-          $(printf "%s\n" \
-          "DB_USER=kotov_admin" \
-          "DB_PASSWORD=$DB_PASSWORD" \
-          "DB_NAME=ip_kotov_db" \
-          "DB_HOST=db_postgres_prod" \
-          "DB_PORT=5432" \
-          "SSL_MODE=$SSL_MODE" \
-          "APP_ENV=prod" \
-          "VITE_API_URL=/api")
-          EOF"'
+          ssh "$HOST" "echo 'DB_USER=kotov_admin
+          DB_PASSWORD=$DB_PASSWORD
+          DB_NAME=ip_kotov_db
+          DB_HOST=db_postgres_prod
+          DB_PORT=5432
+          SSL_MODE=$SSL_MODE
+          APP_ENV=prod
+          VITE_API_URL=/api' > $DEPLOY_DIR/.env"
           
       - name: Sync files to server
         env:
@@ -112,7 +109,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no "$HOST" bash -s <<'REMOTESSH'
             set -e
-            cd $DEPLOY_DIR
+            cd /root/apps/ip_kotov
           
             echo "[INFO]: Stopping & Removing old containers"
             docker compose --profile prod --file docker-compose.yaml --env-file .env down --volumes
