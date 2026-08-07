@@ -68,16 +68,9 @@ jobs:
         env:
           HOST: ${{ secrets.SERVER_HOST }}
           DEPLOY_DIR: /root/apps/ip_kotov
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          SSL_MODE: ${{ secrets.SSL_MODE }}
         run: |
           ssh "$HOST" "mkdir -p $DEPLOY_DIR"
           ssh "$HOST" "echo 'DB_USER=kotov_admin
-          DB_PASSWORD=$DB_PASSWORD
-          DB_NAME=ip_kotov_db
-          DB_HOST=db_postgres_prod
-          DB_PORT=5432
-          SSL_MODE=$SSL_MODE
           APP_ENV=prod
           VITE_API_URL=/api' > $DEPLOY_DIR/.env"
           

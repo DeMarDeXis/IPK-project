@@ -2,7 +2,8 @@ package storage
 
 import (
 	"RZHDBack/internal/model"
-	"RZHDBack/internal/storage/postgres"
+	"RZHDBack/internal/storage/sqlite"
+
 	"github.com/jmoiron/sqlx"
 )
 
@@ -27,7 +28,7 @@ type Storage struct {
 
 func NewStorage(db *sqlx.DB) *Storage {
 	return &Storage{
-		DataLoader: postgres.NewDataCompanyStorage(db),
-		DataGetter: postgres.NewProductionDataGetter(db),
+		DataLoader: sqlite.NewDataCompanyStorage(db),
+		DataGetter: sqlite.NewProductionDataGetter(db),
 	}
 }

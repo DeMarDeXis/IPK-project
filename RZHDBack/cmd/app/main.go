@@ -5,14 +5,16 @@ import (
 	"RZHDBack/internal/httphandler/handler"
 	"RZHDBack/internal/service"
 	"RZHDBack/internal/storage"
-	"RZHDBack/internal/storage/postgres"
+	"RZHDBack/internal/storage/sqlite"
 	"RZHDBack/pkg/config"
 	"RZHDBack/pkg/lib/logger/handler/slogpretty"
 	"flag"
-	_ "github.com/lib/pq"
-	"github.com/rs/cors"
 	"log/slog"
 	"os"
+
+	_ "modernc.org/sqlite"
+
+	"github.com/rs/cors"
 )
 
 const (
@@ -34,29 +36,37 @@ func main() {
 	logg.Info("App is start", slog.String("env", cfg.Env))
 
 	// load database
-	db, err := postgres.New(postgres.StorageConfig{
-		Host:    cfg.StorageConfig.Host,
-		Port:    cfg.StorageConfig.Port,
-		User:    cfg.StorageConfig.User,
-		DBName:  cfg.StorageConfig.DBName,
-		SSLMode: cfg.StorageConfig.SSLMode,
-	}, cfg.StorageConfig.Password)
+	//db, err := postgres.New(postgres.StorageConfig{
+	//	Host:    cfg.StorageConfig.Host,
+	//	Port:    cfg.StorageConfig.Port,
+	//	User:    cfg.StorageConfig.User,
+	//	DBName:  cfg.StorageConfig.DBName,
+	//	SSLMode: cfg.StorageConfig.SSLMode,
+	//}, cfg.StorageConfig.Password)
+	db, err := sqlite.New(sqlite.StorageConfig{Path: cfg.StorageConfig.Path})
 	if err != nil {
 		logg.Error("error db open", slog.Any("error", err.Error())) //Example of error's logging
 	}
 
-	logg.Debug("init db",
-		slog.String("host", cfg.StorageConfig.Host),
-		slog.String("port", cfg.StorageConfig.Port),
-		slog.String("username", cfg.StorageConfig.User),
-		slog.String("password", cfg.StorageConfig.Password),
-		slog.String("dbname", cfg.StorageConfig.DBName),
-		slog.String("sslmode", cfg.StorageConfig.SSLMode),
+	//logg.Debug("init db",
+	//	slog.String("host", cfg.StorageConfig.Host),
+	//	slog.String("port", cfg.StorageConfig.Port),
+	//	slog.String("username", cfg.StorageConfig.User),
+	//	slog.String("password", cfg.StorageConfig.Password),
+	//	slog.String("dbname", cfg.StorageConfig.DBName),
+	//	slog.String("sslmode", cfg.StorageConfig.SSLMode),
+	//	slog.String("env", cfg.Env))
+	logg.Debug("init sqlite",
+		slog.String("path", cfg.StorageConfig.Path),
 		slog.String("env", cfg.Env))
+
+	if err := sqlite.Migrate(db); err != nil {
+		logg.Error("error migrate", slog.Any("error", err.Error()))
+		os.Exit(1)
+	}
 
 	// Init storage
 	strg := storage.NewStorage(db)
-
 	// load service
 	srvc := service.New(strg)
 
@@ -92,7 +102,7 @@ func main() {
 	}
 
 	// stop db
-	if err := postgres.Stop(db); err != nil {
+	if err := sqlite.Stop(db); err != nil {
 		logg.Error("failed to stop db", slog.Any("error", err))
 		os.Exit(1)
 	}

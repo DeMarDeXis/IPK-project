@@ -1,18 +1,20 @@
 package config
 
 import (
-	"RZHDBack/internal/storage/postgres"
-	"github.com/ilyakaznacheev/cleanenv"
-	"github.com/joho/godotenv"
+	"RZHDBack/internal/storage/sqlite"
 	"log"
 	"time"
+
+	"github.com/ilyakaznacheev/cleanenv"
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
-	Env                    string `yaml:"env" env:"APP_ENV" env-default:"local"`
-	HTTPServer             `yaml:"http_server"`
-	postgres.StorageConfig `yaml:"db_postgres"`
-	CORS                   CORSConfig `yaml:"cors"`
+	Env        string `yaml:"env" env:"APP_ENV" env-default:"local"`
+	HTTPServer `yaml:"http_server"`
+	//postgres.StorageConfig `yaml:"db_postgres"`
+	sqlite.StorageConfig `yaml:"storage"`
+	CORS                 CORSConfig `yaml:"cors"`
 }
 
 type HTTPServer struct {

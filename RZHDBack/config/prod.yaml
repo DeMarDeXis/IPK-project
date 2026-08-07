@@ -15,6 +15,9 @@ db_postgres:
   db_name: "ip_kotov_db"
   ssl_mode: "disable"
 
+storage:
+  path: "./data/catalog.db"
+
 cors:
   allowed_origins:
     - "http://localhost:80"
