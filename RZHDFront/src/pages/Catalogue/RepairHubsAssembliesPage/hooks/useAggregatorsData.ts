@@ -1,5 +1,7 @@
-import type {Aggregator} from "../types/aggregators.ts";
-import {useEffect, useState} from "react";
+import type { Aggregator } from "../types/aggregators.ts";
+import { useEffect, useState } from "react";
+
+import repairHHData from "../../../../../../RZHDBack/temp/jsonData/repairHH.json";
 
 interface UseAggregatorsDataReturn {
     aggregators: Aggregator[];
@@ -7,34 +9,23 @@ interface UseAggregatorsDataReturn {
     error: string | null;
 }
 
-const API_URL = '/api/production/rep-hh';
-
 export const useAggregatorsData = (): UseAggregatorsDataReturn => {
     const [aggregators, setAggregators] = useState<Aggregator[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error(`HTTP STATUS: ${response.status}`)
-
-                const data = await response.json();
-                setAggregators(data.aggregators);
-            } catch (error) {
-                setError(`Data is not available or ERROR.`);
-                console.error('[ERROR] Fetch error:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
+        try {
+            setLoading(true);
+            setError(null);
+            setAggregators(repairHHData.aggregators || []);
+        } catch (err) {
+            setError(`Данные недоступны.`);
+            console.error('[ERROR] Data error:', err);
+        } finally {
+            setLoading(false);
+        }
     }, []);
 
-    return { aggregators, loading, error }
-}
+    return { aggregators, loading, error };
+};

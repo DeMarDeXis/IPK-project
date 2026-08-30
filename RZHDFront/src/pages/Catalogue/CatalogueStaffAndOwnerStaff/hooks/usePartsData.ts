@@ -1,6 +1,11 @@
 import type {CatalogMode, Part} from "../types/partitions.ts";
 import {useEffect, useState} from "react";
 
+// const API_BASE = import.meta.env.VITE_API_URL || '';
+
+import dieselData from "../../../../../../RZHDBack/temp/jsonData/DieselD50Series.json";
+import privateData from "../../../../../../RZHDBack/temp/jsonData/PrivateProd.json";
+
 interface UsePartsDataReturn {
     parts: Part[];
     loading: boolean;
@@ -9,10 +14,10 @@ interface UsePartsDataReturn {
     setMode: (mode: CatalogMode) => void;
 }
 
-const API_URLS = {
-    D50_PATH: "/api/production/d50",
-    PrivateProds_PATH: "/api/production/private-prod",
-};
+// const API_URLS = {
+//     D50_PATH: `${API_BASE}/api/production/d50`,
+//     PrivateProds_PATH: `${API_BASE}/api/production/private-prod`,
+// };
 
 export const usePartsData = (): UsePartsDataReturn => {
     const [parts, setParts] = useState<Part[]>([]);
@@ -27,8 +32,8 @@ export const usePartsData = (): UsePartsDataReturn => {
                 setError(null);
 
                 const endpoint = mode === 'catalogue'
-                    ? API_URLS.D50_PATH
-                    : API_URLS.PrivateProds_PATH;
+                    ? (dieselData.diesel_D50_Series || [])
+                    : (privateData.private_prod || []);
 
                 const response = await fetch(endpoint);
                 if (!response.ok) throw new Error(`HTTP STATUS: ${response.status}`)

@@ -1,6 +1,9 @@
 import type {Details} from "../types/details.ts";
 import {useEffect, useState} from "react";
 
+// const API_BASE = import.meta.env.VITE_API_URL || '';
+
+import capRepData from "../../../../../../RZHDBack/temp/jsonData/caprep-json.json";
 
 interface UseDetailsDataReturn {
     details: Details[];
@@ -8,9 +11,9 @@ interface UseDetailsDataReturn {
     error: string | null;
 }
 
-const API_URLS  = {
-    MajorRepair_PATH: "/api/production/major-repair",
-}
+// const API_URLS  = {
+//     MajorRepair_PATH: `${API_BASE}/api/production/major-repair`,
+// }
 
 export const useDetailsData = (): UseDetailsDataReturn => {
     const [details, setDetails] = useState<Details[]>([]);
@@ -22,12 +25,8 @@ export const useDetailsData = (): UseDetailsDataReturn => {
             try {
                 setLoading(true);
                 setError(null);
-
-                const response = await fetch(API_URLS.MajorRepair_PATH);
-                if (!response.ok) throw new Error(`HTTP STATUS: ${response.status}`)
-
-                const data = await response.json();
-                setDetails(data.details || []);
+                setDetails(capRepData.details || []);
+            } catch (err) {
             } catch (error) {
                 setError(`Details data is not available or ERROR.`);
                 console.error('[ERROR] Fetch error:', error);
