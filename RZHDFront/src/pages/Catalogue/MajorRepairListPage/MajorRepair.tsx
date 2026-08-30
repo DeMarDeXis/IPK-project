@@ -25,10 +25,10 @@ const MajorRepairPage: React.FC = () => {
         setIsModalOpen(false);
         setSelectedItem(null);
     };
-
-    const handleMouseEnter = (id: string) => {
-        setHoveredItem(id);
-    };
+    //
+    // const handleMouseEnter = (id: string) => {
+    //     setHoveredItem(id);
+    // };
 
     const handleMouseLeave = () => {
         setHoveredItem(null);
