@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 // const API_BASE = import.meta.env.VITE_API_URL || '';
 
-import capRepData from "../../../../../../RZHDBack/temp/jsonData/caprep-json.json";
+import capRepData from "../../../../data/caprep-json.json";
 
 interface UseDetailsDataReturn {
     details: Details[];
@@ -26,7 +26,6 @@ export const useDetailsData = (): UseDetailsDataReturn => {
                 setLoading(true);
                 setError(null);
                 setDetails(capRepData.details || []);
-            } catch (err) {
             } catch (error) {
                 setError(`Details data is not available or ERROR.`);
                 console.error('[ERROR] Fetch error:', error);

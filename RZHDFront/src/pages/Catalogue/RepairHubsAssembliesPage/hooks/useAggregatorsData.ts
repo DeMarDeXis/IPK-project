@@ -1,7 +1,7 @@
 import type { Aggregator } from "../types/aggregators.ts";
 import { useEffect, useState } from "react";
 
-import repairHHData from "../../../../../../RZHDBack/temp/jsonData/repairHH.json";
+import repairHHData from "../../../../data/repairHH.json";
 
 interface UseAggregatorsDataReturn {
     aggregators: Aggregator[];

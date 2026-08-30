@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 
 // const API_BASE = import.meta.env.VITE_API_URL || '';
 
-import dieselData from "../../../../../../RZHDBack/temp/jsonData/DieselD50Series.json";
-import privateData from "../../../../../../RZHDBack/temp/jsonData/PrivateProd.json";
+import dieselData from "../../../../data/DieselD50Series.json";
+import privateData from "../../../../data/PrivateProd.json";
 
 interface UsePartsDataReturn {
     parts: Part[];

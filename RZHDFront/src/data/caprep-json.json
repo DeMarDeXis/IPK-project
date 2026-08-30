@@ -1,0 +1,89 @@
+{
+  "details": [
+    {
+      "title": "Турбокомпрессор ТК30Н26СБ2",
+      "desc": "",
+      "photos": [
+        "/CapFixTK30H26Cb2/Was/photo_1_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Was/photo_2_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Was/photo_3_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Was/photo_4_2025-08-15_08-15-57.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_1_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_2_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_3_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_4_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_5_2025-08-15_08-14-45.jpg",
+        "/CapFixTK30H26Cb2/Became/photo_6_2025-08-15_08-14-45.jpg"
+      ],
+      "prev_photo": "/CapFixTK30H26Cb2/Became/photo_3_2025-08-15_08-14-45.jpg"
+    },
+    {
+      "title": "Турбокомпрессор ТК30С02",
+      "desc": "Капитальный ремонт без запчастей 55 000 руб.",
+      "photos": [
+        "/CapFixTK30C02/Was/photo_1_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_2_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_3_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_4_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_5_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_6_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_7_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Was/photo_8_2025-08-15_08-18-54.jpg",
+        "/CapFixTK30C02/Became/photo_1_2025-08-15_08-18-19.jpg",
+        "/CapFixTK30C02/Became/photo_2_2025-08-15_08-18-19.jpg",
+        "/CapFixTK30C02/Became/photo_3_2025-08-15_08-18-19.jpg"
+      ],
+      "prev_photo": "/CapFixTK30C02/Became/photo_1_2025-08-15_08-18-19.jpg"
+    },
+    {
+      "title": "Турбокомпрессор ТК18н-02",
+      "desc": "",
+      "photos": [
+        "Production/TK18H02/TK18H02Photo1.jpg",
+        "Production/TK18H02/TK18H02Photo2.jpg",
+        "Production/TK18H02/TK18H02Photo3.jpg"
+
+      ],
+      "prev_photo": "Production/TK18H02/TK18H02Photo3.jpg"
+    },
+    {
+      "title": "Турбокомпрессор ТК18с-21",
+      "desc": "",
+      "photos": [
+        "Production/TK18C21/TK18C21Photo1.jpg",
+        "Production/TK18C21/TK18C21Photo2.jpg",
+        "Production/TK18C21/TK18C21Photo3.jpg"
+      ],
+      "prev_photo": "Production/TK18C21/TK18C21Photo1.jpg"
+    },
+    {
+      "title": "Турбокомпрессор ТК23с-01",
+      "desc": "",
+      "photos": [
+        "Production/TK23C01/Before/TK23C01Photo1.jpg",
+        "Production/TK23C01/Before/TK23C01Photo2.jpg",
+        "Production/TK23C01/Before/TK23C01Photo3.jpg",
+        "Production/TK23C01/Before/TK23C01Photo4.jpg",
+        "Production/TK23C01/TK23C01Photo1.jpg",
+        "Production/TK23C01/TK23C01Photo2.jpg"
+      ],
+      "prev_photo": "Production/TK23C01/TK23C01Photo1.jpg"
+    },
+    {
+      "title": "Турбокомпрессор ТК23с-44",
+      "desc": "",
+      "photos": [
+        "Production/TK23C44/TK23C44Ph1.jpg",
+        "Production/TK23C44/TK23C44Ph2.jpg"
+      ],
+      "prev_photo": "Production/TK23C44/TK23C44Ph1.jpg"
+    },
+    {
+      "title": "Турбокомпрессор ТК34н-04",
+      "desc": "",
+      "photos": [],
+      "prev_photo": ""
+    }
+
+  ]
+}
