@@ -1,5 +1,5 @@
 export interface Details {
-    id: string
+    id?: string
     title: string;
     desc: string;
     photos: string[];

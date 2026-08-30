@@ -1,8 +1,6 @@
 import type {CatalogMode, Part} from "../types/partitions.ts";
 import {useEffect, useState} from "react";
 
-// const API_BASE = import.meta.env.VITE_API_URL || '';
-
 import dieselData from "../../../../data/DieselD50Series.json";
 import privateData from "../../../../data/PrivateProd.json";
 
@@ -14,11 +12,6 @@ interface UsePartsDataReturn {
     setMode: (mode: CatalogMode) => void;
 }
 
-// const API_URLS = {
-//     D50_PATH: `${API_BASE}/api/production/d50`,
-//     PrivateProds_PATH: `${API_BASE}/api/production/private-prod`,
-// };
-
 export const usePartsData = (): UsePartsDataReturn => {
     const [parts, setParts] = useState<Part[]>([]);
     const [loading, setLoading] = useState(true);
@@ -26,33 +19,26 @@ export const usePartsData = (): UsePartsDataReturn => {
     const [mode, setMode] = useState<CatalogMode>('catalogue');
 
     useEffect(() => {
-        const fetchData = async () => {
+        const loadData = () => {
             try {
                 setLoading(true);
                 setError(null);
 
-                const endpoint = mode === 'catalogue'
+                // Directly use the imported JSON data instead of fetching
+                const partsData = mode === 'catalogue'
                     ? (dieselData.diesel_D50_Series || [])
                     : (privateData.private_prod || []);
 
-                const response = await fetch(endpoint);
-                if (!response.ok) throw new Error(`HTTP STATUS: ${response.status}`)
-
-                const data = await response.json();
-                const partsData = mode === 'catalogue'
-                    ? data.diesel_D50_Series || []
-                    : data.private_prod || [];
-
-                setParts(partsData);
-            } catch (error) {
-                setError(`Data is not available or ERROR.`)
-                console.error('[ERROR] Fetch error:', error);
+                setParts(partsData as Part[]);
+            } catch (err) {
+                setError(`Data is not available or ERROR.`);
+                console.error('[ERROR] Data load error:', err);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchData();
+        loadData();
     }, [mode]);
 
     return { parts, loading, error, mode, setMode };

@@ -6,14 +6,14 @@ import RepairHHPage from "../pages/Catalogue/RepairHubsAssembliesPage/RepairHAPa
 
 const AppRouter = () => {
     return (
-        <HashRouter>
+        <Routes>
             <Routes>
                 <Route path={"/"} element={<MainPage />} />
                 <Route path={"/catalog"} element={<ListDieselAndPrivateProductionPage />} />
                 <Route path={"/caprep"} element={<MajorRepairPage />} />
                 <Route path={"/repairhh"} element={<RepairHHPage />} />
             </Routes>
-        </HashRouter>
+        </Routes>
     );
 };
 
