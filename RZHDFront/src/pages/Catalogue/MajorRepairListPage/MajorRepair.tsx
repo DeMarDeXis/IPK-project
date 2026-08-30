@@ -70,7 +70,7 @@ const MajorRepairPage: React.FC = () => {
                                 <div
                                     className={styles.text}
                                     onClick={() => handleItemClick(item)}
-                                    onMouseEnter={() => handleMouseEnter(item.id)}
+                                    // onMouseEnter={() => handleMouseEnter(item.id)}
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     <h3>{item.title}</h3>
